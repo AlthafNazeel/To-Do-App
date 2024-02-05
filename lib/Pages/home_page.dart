@@ -10,6 +10,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // list of todo tasks
+List toDoList = [
+  ["Make tutorial", false],
+  ["Exercise", false],
+];
+
+  // checkbox was tapped
+  void checkBoxChanged(bool? value, int index) {
+    setState(() {
+      toDoList[index] [1] = !toDoList[index] [1];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(                            // Scafffold is like the structure of the page all widgets will be put under this section
@@ -20,10 +33,31 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.purple,
       ),
 
-      body: ListView(                      // creates a listvoew in the body with a todolist class as the only child included
-        children: [
-        ToDoTile(),                        // This method is to be created
-        ],
+      body: ListView.builder(                      // creates a scrollable list of widgets 
+        itemCount: toDoList.length,
+        itemBuilder: (context, index) {             // like a loop index will increment
+          return ToDoTile(
+          taskName: toDoList[index] [0],            // access the first column in that index for name
+          taskCompleted: toDoList[index] [1], 
+          onChanged: (value) => checkBoxChanged(value, index),
+          );
+        },
+
+        // children: [
+        // ToDoTile(                          // Calling the constructor and passing details
+        //   taskName: "Make Tutorial",
+        //   taskCompleted: true,
+        //   onChanged: (p0) {},
+        // ),
+
+        // ToDoTile(                          // Calling the constructor and passing details
+        //   taskName: "Go to the Gym",
+        //   taskCompleted: false,
+        //   onChanged: (p0) {},
+        // ),
+
+
+        // ],
       ),
 
     );
