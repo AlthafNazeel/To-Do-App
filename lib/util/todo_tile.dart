@@ -15,7 +15,7 @@ class ToDoTile extends StatelessWidget {          // Stateless widgets is a basi
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(25.0),        // This padding is applied out of the container so basically the top gap
+      padding: const EdgeInsets.only(left: 25.0, right: 25, top: 25),        // This padding is applied out of the container so basically the top gap
       child: Container(
         padding: EdgeInsets.all(24),
         child: Row(                               // made it a row so that it could have have multiple children
@@ -24,7 +24,12 @@ class ToDoTile extends StatelessWidget {          // Stateless widgets is a basi
             Checkbox(value: taskCompleted, onChanged: onChanged),  // OnChanged requires a Function(bool?)? type thats why it is intialized as this above
 
             // task name
-            Text(taskName),
+            Text(
+              taskName,
+              style: TextStyle(
+                decoration: taskCompleted ? TextDecoration.lineThrough : TextDecoration.none ,    // checks if taskCompleted is true if true put a linethrough else none
+              ),
+            ),
           ],
         ),
         decoration: BoxDecoration(

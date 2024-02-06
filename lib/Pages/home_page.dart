@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/util/dialog_box.dart';
 import 'package:flutter_application_1/util/todo_tile.dart';
 // import 'package:todotute/pages/home_page.dart';
 
@@ -10,6 +11,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  // text controller
+  final _controller = TextEditingController();
+
   // list of todo tasks
 List toDoList = [
   ["Make tutorial", false],
@@ -17,10 +22,33 @@ List toDoList = [
 ];
 
   // checkbox was tapped
-  void checkBoxChanged(bool? value, int index) {
-    setState(() {
-      toDoList[index] [1] = !toDoList[index] [1];
+  void checkBoxChanged(bool? value, int index) {              //This function is called when a checkbox in a ToDoTile is tapped. It cahnges the completion status of the corresponding task
+    setState(() {                   
+      toDoList[index] [1] = !toDoList[index] [1];             // changes the boolean to opposites true if it was false and vise versa.
     });
+  }
+
+  // save new task
+  void saveNewTask(){
+    setState(() {
+      toDoList.add([_controller.text, false]);
+      _controller.clear();
+    });
+    Navigator.of(context).pop();
+  }
+
+  // create a new task
+  void createNewTask() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return DialogBox(
+          controller: _controller,
+          onSave: saveNewTask,
+          onCancel: () => Navigator.of(context).pop(),
+        );
+      },
+    );
   }
 
   @override
@@ -28,9 +56,26 @@ List toDoList = [
     return Scaffold(                            // Scafffold is like the structure of the page all widgets will be put under this section
       backgroundColor: Colors.purple[200],
       appBar: AppBar(                           // it creates an top bar can specify more things like title or actions to be performed here etc
-        title: Text ('R.A.V.E.N'),              // Title for top bar
+        title: Padding(
+          padding: const EdgeInsets.only(top: 29),
+          child: Text (                           // Title for top bar
+            'R.A.V.E.N',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+            ),
+        ),  
+
         elevation: 10,                          // Gives a small shadow effect to the end of the top bar (there by default can adjust stregnth here)
         backgroundColor: Colors.purple,
+        toolbarHeight: 80,                      // Adjust the height of the app bar
+        centerTitle: true,                      // Center the title
+      ), 
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: createNewTask,
+        child: Icon(Icons.add),
       ),
 
       body: ListView.builder(                      // creates a scrollable list of widgets 
