@@ -51,6 +51,12 @@ List toDoList = [
     );
   }
 
+  void deleteTask(int index) {
+    setState(() {
+      toDoList.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(                            // Scafffold is like the structure of the page all widgets will be put under this section
@@ -85,6 +91,7 @@ List toDoList = [
           taskName: toDoList[index] [0],            // access the first column in that index for name
           taskCompleted: toDoList[index] [1], 
           onChanged: (value) => checkBoxChanged(value, index),
+          deleteFunction: (p0) => deleteTask(index),
           );
         },
 

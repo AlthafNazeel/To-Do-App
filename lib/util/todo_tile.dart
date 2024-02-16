@@ -1,21 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class ToDoTile extends StatelessWidget {          // Stateless widgets is a basic building block for creating UI, its immutable 
   final String taskName;                          // These are the attributes of this class
   final bool taskCompleted;
   Function(bool?)? onChanged;
+  Function(BuildContext)? deleteFunction;
   
   ToDoTile ({                                     // This is a constructor
     super.key,
     required this.taskName,
     required this.taskCompleted,
     required this.onChanged,
+    required this.deleteFunction,
   });                                             // Stateless widget has no interactivity only the static part of the UI
                                                   // If you need a widget that can change its appearance or respond to user input, you would use a StatefulWidget instead.
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 25.0, right: 25, top: 25),        // This padding is applied out of the container so basically the top gap
+      child: Slidable(
+        endActionPane: ActionPane(
+          motion: StretchMotion(),
+          children: [
+            SlidableAction(
+              onPressed: deleteFunction,
+              icon: Icons.delete,
+              backgroundColor: Colors.red.shade300,
+              borderRadius: BorderRadius.circular(12),
+              )
+          ],
+        ),
+      
+      
       child: Container(
         padding: EdgeInsets.all(24),
         child: Row(                               // made it a row so that it could have have multiple children
@@ -35,6 +52,7 @@ class ToDoTile extends StatelessWidget {          // Stateless widgets is a basi
         decoration: BoxDecoration(
           color: Colors.purpleAccent,
           borderRadius: BorderRadius.circular(15)),
+      ),
       ),
     );
   }
