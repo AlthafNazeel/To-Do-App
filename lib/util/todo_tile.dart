@@ -34,6 +34,7 @@ class ToDoTile extends StatelessWidget {          // Stateless widgets is a basi
       
       
       child: Container(
+        height: 75,
         padding: EdgeInsets.all(24),
         child: Row(                               // made it a row so that it could have have multiple children
           children: [
@@ -44,14 +45,19 @@ class ToDoTile extends StatelessWidget {          // Stateless widgets is a basi
             Text(
               taskName,
               style: TextStyle(
+                fontSize: 17,
+                fontWeight: taskCompleted ? FontWeight.normal : FontWeight.bold,                  // unbolds the text when done
                 decoration: taskCompleted ? TextDecoration.lineThrough : TextDecoration.none ,    // checks if taskCompleted is true if true put a linethrough else none
               ),
             ),
           ],
         ),
         decoration: BoxDecoration(
-          color: Colors.purpleAccent,
-          borderRadius: BorderRadius.circular(15)),
+          // color: Colors.purpleAccent,
+          border: Border.all(color: Colors.black),
+          borderRadius: BorderRadius.circular(50)),
+          
+          
       ),
       ),
     );

@@ -60,12 +60,12 @@ List toDoList = [
   @override
   Widget build(BuildContext context) {
     return Scaffold(                            // Scafffold is like the structure of the page all widgets will be put under this section
-      backgroundColor: Colors.purple[200],
+      // backgroundColor: Colors.blueAccent[200],
       appBar: AppBar(                           // it creates an top bar can specify more things like title or actions to be performed here etc
         title: Padding(
-          padding: const EdgeInsets.only(top: 29),
+          padding: const EdgeInsets.only(top: 25),
           child: Text (                           // Title for top bar
-            'R.A.V.E.N',
+            'TO-DO-LIST',
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
@@ -74,7 +74,7 @@ List toDoList = [
         ),  
 
         elevation: 10,                          // Gives a small shadow effect to the end of the top bar (there by default can adjust stregnth here)
-        backgroundColor: Colors.purple,
+        backgroundColor: const Color.fromARGB(255, 107, 142, 201),
         toolbarHeight: 80,                      // Adjust the height of the app bar
         centerTitle: true,                      // Center the title
       ), 
@@ -82,6 +82,7 @@ List toDoList = [
       floatingActionButton: FloatingActionButton(
         onPressed: createNewTask,
         child: Icon(Icons.add),
+        backgroundColor: Color.fromARGB(255, 107, 142, 201),
       ),
 
       body: ListView.builder(                      // creates a scrollable list of widgets 

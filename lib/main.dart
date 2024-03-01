@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,                   //This line removes the debug banner that appears in the top-right corner of the screen
       home: HomePage(),
-      theme: ThemeData(primarySwatch: Colors.yellow),   // universal color which will be applied everywhere shades of yellow
+      theme: ThemeData(primarySwatch: Colors.blue),   // universal color which will be applied everywhere shades of yellow
       );
   }
 }
