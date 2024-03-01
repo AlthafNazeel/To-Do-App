@@ -63,7 +63,7 @@ List toDoList = [
       // backgroundColor: Colors.blueAccent[200],
       appBar: AppBar(                           // it creates an top bar can specify more things like title or actions to be performed here etc
         title: Padding(
-          padding: const EdgeInsets.only(top: 25),
+          padding: const EdgeInsets.only(top: 0),
           child: Text (                           // Title for top bar
             'TO-DO-LIST',
             style: TextStyle(

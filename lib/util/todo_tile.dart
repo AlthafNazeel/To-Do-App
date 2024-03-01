@@ -18,7 +18,7 @@ class ToDoTile extends StatelessWidget {          // Stateless widgets is a basi
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 25.0, right: 25, top: 25),        // This padding is applied out of the container so basically the top gap
+      padding: const EdgeInsets.only(left: 25, right: 25, top: 15),        // This padding is applied out of the container so basically the top gap
       child: Slidable(
         endActionPane: ActionPane(
           motion: StretchMotion(),
@@ -27,7 +27,7 @@ class ToDoTile extends StatelessWidget {          // Stateless widgets is a basi
               onPressed: deleteFunction,
               icon: Icons.delete,
               backgroundColor: Colors.red.shade300,
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(50),
               )
           ],
         ),
@@ -45,7 +45,7 @@ class ToDoTile extends StatelessWidget {          // Stateless widgets is a basi
             Text(
               taskName,
               style: TextStyle(
-                fontSize: 17,
+                fontSize: 18,
                 fontWeight: taskCompleted ? FontWeight.normal : FontWeight.bold,                  // unbolds the text when done
                 decoration: taskCompleted ? TextDecoration.lineThrough : TextDecoration.none ,    // checks if taskCompleted is true if true put a linethrough else none
               ),
